@@ -13,21 +13,11 @@ namespace GeoLib.ConsoleHost
     {
         static void Main(string[] args)
         {
-
             ServiceHost hostGeoManager = new ServiceHost(typeof(GeoManager));
-            //string address = "net.tcp://localhost:8009/GeoService";
-            //Binding binding = new NetTcpBinding();
-
-            string address = "http://localhost:8009/GeoService";
-            Binding binding = new WSHttpBinding();
-
-            Type contract = typeof(IGeoService);
-            hostGeoManager.AddServiceEndpoint(contract, binding, address);
-
-
+            
             hostGeoManager.Open();
             
-            Console.WriteLine("Services started. Press [Enter] to exit.");
+            Console.WriteLine($"Service (App.config) started on \n\n'{hostGeoManager.Description.Endpoints[0].Address}'. \n\nPress [Enter] to exit.");
             Console.ReadLine();
 
             hostGeoManager.Close();
