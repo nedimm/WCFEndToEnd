@@ -25,9 +25,8 @@ namespace GeoLib.Client
         {
             if (txtZipCode.Text != "")
             {
-                //GeoClient proxy = new GeoClient("tcpEP");
-                GeoClient proxy = new GeoClient();
-
+                GeoClient proxy = new GeoClient("httpEP");
+                
                 ZipCodeData data = proxy.GetZipInfo(txtZipCode.Text);
                 if (data != null)
                 {
@@ -41,19 +40,19 @@ namespace GeoLib.Client
 
         private void btnGetZipCodes_Click(object sender, RoutedEventArgs e)
         {
-            if (txtState.Text != null)
-            {
-                EndpointAddress address = new EndpointAddress("net.tcp://localhost:8009/GeoService");
-                Binding binding = new NetTcpBinding();
+            //if (txtState.Text != null)
+            //{
+            //    EndpointAddress address = new EndpointAddress("net.tcp://localhost:8009/GeoService");
+            //    Binding binding = new NetTcpBinding();
 
-                //GeoClient proxy = new GeoClient(binding, address);
-                GeoClient proxy = new GeoClient();
-                IEnumerable<ZipCodeData> data = proxy.GetZips(txtState.Text);
-                if (data != null)
-                    lstZips.ItemsSource = data;
+            //    //GeoClient proxy = new GeoClient(binding, address);
+            //    GeoClient proxy = new GeoClient();
+            //    IEnumerable<ZipCodeData> data = proxy.GetZips(txtState.Text);
+            //    if (data != null)
+            //        lstZips.ItemsSource = data;
 
-                proxy.Close();
-            }
+            //    proxy.Close();
+            //}
         }
 
         private void btnMakeCall_Click(object sender, RoutedEventArgs e)

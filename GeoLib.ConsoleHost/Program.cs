@@ -16,8 +16,14 @@ namespace GeoLib.ConsoleHost
             ServiceHost hostGeoManager = new ServiceHost(typeof(GeoManager));
             
             hostGeoManager.Open();
-            
-            Console.WriteLine($"Service (App.config) started on \n\n'{hostGeoManager.Description.Endpoints[0].Address}'. \n\nPress [Enter] to exit.");
+
+            Console.WriteLine($"Service (App.config) started on:\n");
+            foreach (var endpoint in hostGeoManager.Description.Endpoints)
+            {
+                Console.WriteLine($"{endpoint.Address}");
+            }
+
+            Console.WriteLine("\nPress [Enter] to exit.");
             Console.ReadLine();
 
             hostGeoManager.Close();
